@@ -1,13 +1,13 @@
-import { AsepriteRaw, AsepriteSpriteSheet } from "@excalibur-aseprite";
+import { AsepriteJsonParser, AsepriteRawJson, AsepriteSpriteSheet } from "@excalibur-aseprite";
 import { AnimationStrategy, ImageSource, Sprite } from "excalibur";
 
-describe('An AsepriteSpriteSheet Parser', () => {
+describe('An AsepriteJsonParser', () => {
     it('exists', () => {
-        expect(AsepriteSpriteSheet).toBeDefined();
+        expect(AsepriteJsonParser).toBeDefined();
     });
 
     it('parses multiple aseprite animations', () => {
-        const raw: AsepriteRaw = {
+        const raw: AsepriteRawJson = {
             meta: {
                 image: './path/to/image',
                 size: { w: 20, h: 20 },
@@ -48,8 +48,10 @@ describe('An AsepriteSpriteSheet Parser', () => {
                 }
             }
         }
-
-        const aseprite = new AsepriteSpriteSheet(raw, new ImageSource('./path/to/some/image'));
+        // TODO move to a new test
+        const parser = new AsepriteJsonParser(raw, new ImageSource('./path/to/some/image'));
+        parser.parse();
+        const aseprite = parser.getAsepriteSheet();
 
         const anim1 = aseprite.getAnimation('anim1');
         const frame2OfAnim1 = anim1.frames[1].graphic as Sprite
@@ -68,4 +70,41 @@ describe('An AsepriteSpriteSheet Parser', () => {
         expect(frame1OfAnim3.sourceView.x).toBe(0);
         expect(anim3.strategy).toBe(AnimationStrategy.PingPong);
     });
+
+    it('can clone', () => {
+        const raw: AsepriteRawJson = {
+            meta: {
+                image: './path/to/image',
+                size: { w: 20, h: 20 },
+                scale: 1,
+                format: 'RGBA8888',
+                layers: [],
+                frameTags: [
+                    { name: "anim1", from: 0, to: 1, direction: "forward"},
+                ],
+                slices: []
+            },
+            frames: {
+                "frame1": {
+                    frame: { x: 0, y: 0, w: 10, h: 10},
+                    rotated: false,
+                    trimmed: false,
+                    spriteSourceSize: { x: 0, y: 0, w: 10, h: 10 },
+                    sourceSize: { w: 10, h: 10 },
+                    duration: 500
+                }
+            }
+        }
+
+
+        const parser = new AsepriteJsonParser(raw, new ImageSource('./path/to/some/image'));
+        parser.parse();
+        const aseprite = parser.getAsepriteSheet();
+
+        const clone = aseprite.clone();
+
+        expect(clone).toBeDefined();
+        expect(clone).not.toBe(aseprite);
+        expect(clone.getAnimation('anim1')).not.toBe(aseprite.getAnimation('anim1'));
+    })
 });

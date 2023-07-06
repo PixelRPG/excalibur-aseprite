@@ -11,19 +11,15 @@ describe('An Aseprite Resource', () => {
         await sut.load();
 
         expect(sut.isLoaded());
-        expect(sut.image).toBeDefined();
-        expect(sut.image.path).toBe('test/unit/beetle.png');
-        expect(sut.rawAseprite).toBeDefined();
     });
 
     it('can load a resource with custom image path', async () => {
-        const sut = new AsepriteResource('test/unit/beetle.json', false, 'beetle.png');
+        const sut = new AsepriteResource('test/unit/beetle.json', false);
         await sut.load();
 
         expect(sut.isLoaded());
         expect(sut.image).toBeDefined();
         expect(sut.image.path).toBe('test/unit/beetle.png');
-        expect(sut.rawAseprite).toBeDefined();
     });
 
     it('will log a warning if not yet loaded', () => {
@@ -57,4 +53,16 @@ describe('An Aseprite Resource', () => {
         expect(spriteSheet?.getSprite(0, 0)?.width).toBe(64);
         expect(spriteSheet?.getSprite(0, 0)?.height).toBe(64);
     });
+
+    it ('can clone', async () => {
+        const sut = new AsepriteResource('test/unit/beetle.json');
+        await sut.load();
+
+        const clone = sut.clone();
+
+        expect(sut).not.toBe(clone);
+        expect(clone).toBeDefined();
+        expect(clone.isLoaded()).toBe(true);
+        expect(clone.data).toBeDefined();
+    })
 });

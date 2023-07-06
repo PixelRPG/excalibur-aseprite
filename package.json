@@ -1,6 +1,6 @@
 {
   "name": "@excaliburjs/plugin-aseprite",
-  "version": "0.25.0",
+  "version": "0.27.0",
   "description": "Aseprite Resource Plugin for Excalibur",
   "main": "./dist/excalibur-aseprite.js",
   "typings": "./dist/src/index.d.ts",
@@ -24,11 +24,13 @@
   "homepage": "https://github.com/excaliburjs/excalibur-aseprite#readme",
   "devDependencies": {
     "@excaliburjs/testing": "0.25.1",
-    "@types/jasmine": "4.3.5",
+    "@types/jasmine": "3.10.11",
+    "@types/pako": "2.0.0",
     "@types/webpack-env": "1.18.1",
-    "acorn": "8.9.0",
-    "excalibur": "workspace:^",
-    "jasmine": "5.0.2",
+    "acorn": "8.10.0",
+    "excalibur": "0.27.0",
+    "excalibur-jasmine": "0.2.0",
+    "jasmine": "3.99.0",
     "karma": "6.4.2",
     "karma-chrome-launcher": "3.2.0",
     "karma-jasmine": "4.0.2",
@@ -42,5 +44,8 @@
   },
   "peerDependencies": {
     "excalibur": "workspace:^"
+  },
+  "dependencies": {
+    "pako": "2.1.0"
   }
 }

@@ -1,6 +1,6 @@
 import { AsepriteRawFrame } from './AsepriteRawFrame';
 
-export class AsepriteRaw {
+export class AsepriteRawJson {
     frames!: {
         [key: string]: AsepriteRawFrame,
     }
