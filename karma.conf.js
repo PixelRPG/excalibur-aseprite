@@ -6,6 +6,12 @@ const webpack = require('./webpack.config');
 module.exports = function(config) {
   config.set({
 
+    plugins: [
+      require.resolve('karma-jasmine'),
+      require.resolve('karma-webpack'),
+      require.resolve('karma-chrome-launcher'),
+    ],
+
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -22,7 +28,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/excalibur/build/dist/excalibur.js',
+      require.resolve('excalibur'),
+      // 'node_modules/excalibur/build/dist/excalibur.js',
       'test/unit/_boot.ts',
       { pattern: './src/**/*.js.map', included: false, served: true },
       { pattern: './test/**/*.js.map', included: false, served: true },
