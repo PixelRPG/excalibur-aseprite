@@ -10,7 +10,7 @@
     "build": "webpack --mode production",
     "test:unit": "karma start",
     "test:integration": "webpack --config webpack.config.test.js && ex-test -d ./example -t ./test/integration/test.js",
-    "test": "yarn run test:unit && yarn run test:integration"
+    "test": "npm run test:unit && npm run test:integration"
   },
   "repository": {
     "type": "git",
