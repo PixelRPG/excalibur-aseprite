@@ -14,12 +14,12 @@ describe('An Aseprite Resource', () => {
     });
 
     it('can load a resource with custom image path', async () => {
-        const sut = new AsepriteResource('test/unit/beetle.json', false);
+        const sut = new AsepriteResource('test/unit/beetle.json', false, 'beetle.png?v=2');
         await sut.load();
 
         expect(sut.isLoaded());
         expect(sut.image).toBeDefined();
-        expect(sut.image.path).toBe('test/unit/beetle.png');
+        expect(sut.image.path).toBe('test/unit/beetle.png?v=2');
     });
 
     it('will log a warning if not yet loaded', () => {

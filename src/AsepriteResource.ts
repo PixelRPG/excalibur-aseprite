@@ -28,7 +28,7 @@ export class AsepriteResource implements Loadable<AsepriteSpriteSheet> {
         return false;
     }
 
-    constructor(path: string, public bustCache = false, private imagePath?: string) {
+    constructor(path: string, public bustCache = false, imagePath?: string) {
         this._imagePath = imagePath;
         this._path = path;
         // if this is a .ase/.aseprite download as an arraybuffer 
