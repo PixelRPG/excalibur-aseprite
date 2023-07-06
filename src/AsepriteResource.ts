@@ -59,7 +59,6 @@ export class AsepriteResource implements Loadable<AsepriteSpriteSheet> {
     public async load(): Promise<AsepriteSpriteSheet> {
         if (this._type === 'json' && this._jsonResource) {
             const asepriteData = await this._jsonResource.load();
-            console.debug("convertPath", this._jsonResource.path, this._imagePath, asepriteData.meta.image);
             const imagepath = this.convertPath(this._jsonResource.path, this._imagePath || asepriteData.meta.image);
             const spriteSheetImage = new ImageSource(imagepath, this.bustCache);
             await spriteSheetImage.load();

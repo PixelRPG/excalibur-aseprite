@@ -10,7 +10,7 @@
     "build": "webpack --mode production",
     "test:unit": "karma start",
     "test:integration": "webpack --config webpack.config.test.js && ex-test -d ./example -t ./test/integration/test.js",
-    "test": "npm run test:unit && npm run test:integration"
+    "test": "yarn run test:unit && yarn run test:integration"
   },
   "repository": {
     "type": "git",
@@ -39,11 +39,11 @@
     "ts-loader": "9.4.4",
     "typescript": "5.1.6",
     "webpack": "5.88.1",
-    "webpack-cli": "4.10.0",
+    "webpack-cli": "5.1.4",
     "webpack-dev-server": "4.15.1"
   },
   "peerDependencies": {
-    "excalibur": "workspace:^"
+    "excalibur": "0.27.0"
   },
   "dependencies": {
     "pako": "2.1.0"
