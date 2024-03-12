@@ -37,10 +37,10 @@
     "karma-webpack": "5.0.1",
     "raw-loader": "4.0.2",
     "ts-loader": "9.5.1",
-    "typescript": "4.9.5",
+    "typescript": "5.4.2",
     "webpack": "5.90.3",
-    "webpack-cli": "4.10.0",
-    "webpack-dev-server": "4.15.1"
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "5.0.3"
   },
   "peerDependencies": {
     "excalibur": "~0.29.0"
